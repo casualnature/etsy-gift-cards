@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1a120d">
+  <title>A Thank-You Card for Mom and Dad</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card-shell" aria-label="Interactive thank-you card">
+    <div id="card" class="card">
+      <!--
+        Music begins only after a user taps the card.
+        type="button" prevents the button from behaving like a form submit button.
+      -->
+      <button id="musicToggle" class="utility-button music-toggle" type="button"
+              aria-pressed="false">Music: Off</button>
+
+      <!-- Scene 1: all visible wording is already part of scene1.png. -->
+      <section class="scene scene-1 is-active" data-scene="1"
+               aria-label="Tap the envelope to open the card">
+        <img class="scene-media" src="assets/scene1.png" alt="">
+        <div class="envelope-glow" aria-hidden="true"></div>
+      </section>
+
+      <!-- Scene 2: all visible wording is already part of scene2.png. -->
+      <section class="scene scene-2" data-scene="2"
+               aria-label="A message of gratitude. Tap to continue">
+        <img class="scene-media" src="assets/scene2.png" alt="">
+      </section>
+
+      <!-- Scene 3: only the three revealed words and continue prompt are HTML text. -->
+      <section class="scene scene-3" data-scene="3"
+               aria-label="Tap each of the three flower buds">
+        <img id="scene3StateImage" class="scene-media scene3-state-image"
+             src="assets/scene3_state_000.png" alt="">
+
+        <button class="bud bud-left" type="button" data-word="Love" data-flower="left"
+                aria-label="Reveal the message on the left flower bud">
+          <span class="bud-halo" aria-hidden="true"></span>
+          <span class="bud-word">Love</span>
+        </button>
+
+        <button class="bud bud-center" type="button" data-word="Support" data-flower="bottom"
+                aria-label="Reveal the message on the lower flower bud">
+          <span class="bud-halo" aria-hidden="true"></span>
+          <span class="bud-word">Support</span>
+        </button>
+
+        <button class="bud bud-right" type="button" data-word="Guidance" data-flower="right"
+                aria-label="Reveal the message on the right flower bud">
+          <span class="bud-halo" aria-hidden="true"></span>
+          <span class="bud-word">Guidance</span>
+        </button>
+
+        <div id="scene3Continue" class="continue-prompt scene3-continue" aria-hidden="true">
+          Tap to continue
+        </div>
+      </section>
+
+      <!-- Scene 4: this is the only scene whose main message is added over the media. -->
+      <section class="scene scene-4" data-scene="4"
+               aria-label="A bird takes flight">
+        <video id="scene4Video" class="scene-media"
+               src="assets/scene4.mp4"
+               muted playsinline webkit-playsinline preload="auto"></video>
+        <div class="video-shade" aria-hidden="true"></div>
+
+        <div id="scene4Message" class="scene4-message" aria-hidden="true">
+          <!-- The lines below are filled from cardData in script.js. -->
+        </div>
+
+        <div id="scene4Continue" class="continue-prompt scene4-continue" aria-hidden="true">
+          Tap to continue
+        </div>
+      </section>
+
+      <!-- Final scene: the image contains all fixed text except the signature. -->
+      <section class="scene scene-final" data-scene="5"
+               aria-label="Final thank-you message">
+        <img class="scene-media" src="assets/final.png" alt="">
+        <div class="signature-area">
+          <div id="signatureName" class="signature-name" aria-label="Signature"></div>
+        </div>
+        <button id="replayButton" class="utility-button replay-button" type="button">
+          Replay
+        </button>
+      </section>
+
+      <!-- The music file can be changed near the top of script.js. -->
+      <audio id="backgroundMusic" loop preload="auto"></audio>
+
+      <!-- Screen-reader-only updates for revealed messages and scene changes. -->
+      <p id="liveStatus" class="visually-hidden" aria-live="polite"></p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
