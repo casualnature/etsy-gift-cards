@@ -1,0 +1,229 @@
+:root {
+  --paper: #fbf6ec;
+  --paper-deep: #f2e8d8;
+  --ink-gold: #8c6a36;
+  --ink-brown: #6d5232;
+  --soft-shadow: 0 24px 70px rgba(109, 82, 50, 0.16);
+  --card-width: min(calc(100vw - 24px), 430px, calc((100svh - 24px) * 9 / 16));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.78), transparent 30rem),
+    linear-gradient(180deg, var(--paper), var(--paper-deep));
+  color: var(--ink-brown);
+  font-family: Georgia, "Times New Roman", serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.page-shell {
+  display: grid;
+  min-height: 100svh;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  place-items: center;
+}
+
+.card-frame {
+  position: relative;
+  width: var(--card-width);
+  aspect-ratio: 9 / 16;
+  max-height: calc(100svh - 24px);
+  overflow: hidden;
+  background: #fffaf1;
+  border-radius: 8px;
+  box-shadow: var(--soft-shadow);
+  isolation: isolate;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.01);
+  transition:
+    opacity 900ms ease,
+    transform 1200ms ease;
+}
+
+.scene.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.scene img,
+.scene video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tap-prompt {
+  position: absolute;
+  left: clamp(22px, 9vw, 52px);
+  right: clamp(22px, 9vw, 52px);
+  bottom: clamp(72px, 12%, 130px);
+  padding: 0.45rem 0.65rem;
+  color: var(--ink-gold);
+  font-size: clamp(0.86rem, 3.4vw, 1.08rem);
+  letter-spacing: 0;
+  line-height: 1.45;
+  text-align: center;
+  text-shadow: 0 1px 12px rgba(255, 250, 240, 0.92);
+  animation: promptBreath 2400ms ease-in-out infinite;
+}
+
+.final-copy {
+  position: absolute;
+  left: clamp(24px, 8vw, 52px);
+  right: clamp(24px, 8vw, 52px);
+  top: 45%;
+  transform: translateY(-50%);
+  display: grid;
+  gap: clamp(0.7rem, 2.4vw, 1rem);
+  justify-items: center;
+  color: var(--ink-gold);
+  text-align: center;
+  text-wrap: balance;
+  opacity: 0;
+  transition:
+    opacity 1400ms ease 380ms,
+    transform 1400ms ease 380ms;
+}
+
+.scene-final.is-active .final-copy {
+  opacity: 1;
+  transform: translateY(-53%);
+}
+
+.final-copy h1,
+.final-copy p {
+  margin: 0;
+  overflow-wrap: anywhere;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.68),
+    0 8px 26px rgba(109, 82, 50, 0.12);
+}
+
+.final-copy h1 {
+  font-size: clamp(1.85rem, 8.4vw, 3.05rem);
+  font-weight: 500;
+  line-height: 1.08;
+}
+
+.final-copy p {
+  max-width: 19rem;
+  margin-inline: auto;
+  color: var(--ink-brown);
+  font-size: clamp(1rem, 4.2vw, 1.28rem);
+  line-height: 1.55;
+}
+
+.soft-control {
+  min-height: 2rem;
+  border: 1px solid rgba(140, 106, 54, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 252, 245, 0.72);
+  box-shadow: 0 8px 22px rgba(109, 82, 50, 0.08);
+  color: var(--ink-gold);
+  font-size: 0.82rem;
+  line-height: 1;
+  letter-spacing: 0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease,
+    opacity 220ms ease;
+}
+
+.soft-control:focus-visible {
+  outline: 2px solid rgba(140, 106, 54, 0.38);
+  outline-offset: 3px;
+}
+
+.soft-control:active {
+  background: rgba(255, 248, 235, 0.86);
+}
+
+.sound-toggle {
+  position: absolute;
+  top: clamp(12px, 3.6vw, 18px);
+  right: clamp(12px, 3.6vw, 18px);
+  z-index: 5;
+  min-width: 4.1rem;
+  padding: 0.45rem 0.72rem;
+}
+
+.watch-again-button {
+  margin-top: clamp(0.35rem, 1.8vw, 0.8rem);
+  padding: 0.55rem 0.95rem;
+}
+
+@keyframes promptBreath {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-height: 620px) {
+  .page-shell {
+    padding: 8px;
+  }
+
+  .card-frame {
+    max-height: calc(100svh - 16px);
+  }
+
+  .tap-prompt {
+    bottom: 9%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene,
+  .final-copy {
+    transition-duration: 1ms;
+  }
+
+  .tap-prompt {
+    animation: none;
+  }
+}
