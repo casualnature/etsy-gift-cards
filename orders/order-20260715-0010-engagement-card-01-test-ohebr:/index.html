@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Congratulations on Your Engagement</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page-shell" aria-label="Interactive engagement gift card">
+    <section class="card" id="giftCard">
+      <div class="scene scene-cover active" id="coverScene" aria-label="Cover">
+        <img src="assets/cover.png" alt="A special day for two engagement card cover">
+        <div class="tap-prompt">Tap</div>
+      </div>
+
+      <div class="scene scene-candles" id="candleScene" aria-label="Tap to light the candles">
+        <img src="assets/candle-off.png" alt="Two unlit candles in a romantic room">
+
+        <button class="candle-hit candle-hit-left" type="button" aria-label="Light left candle"></button>
+        <button class="candle-hit candle-hit-right" type="button" aria-label="Light right candle"></button>
+
+        <div class="light-hint light-hint-left" id="leftHint">Tap to light</div>
+        <div class="light-hint light-hint-right" id="rightHint">Tap to light</div>
+
+        <div class="flame flame-left" id="leftFlame" aria-hidden="true"></div>
+        <div class="flame flame-right" id="rightFlame" aria-hidden="true"></div>
+      </div>
+
+      <div class="scene scene-final" id="finalScene" aria-label="Final engagement message">
+        <img src="assets/final-bg.png" alt="Romantic rose engagement card background">
+        <div class="final-message" aria-live="polite">
+          <p class="couple-names" id="coupleNames"></p>
+          <p class="headline" id="headline"></p>
+          <p class="message" id="message"></p>
+          <p class="date" id="date"></p>
+        </div>
+        <button class="replay-button" id="replayButton" type="button">Replay</button>
+      </div>
+
+      <button class="music-toggle" id="musicToggle" type="button" aria-label="Toggle music">♪ Off</button>
+      <audio id="bgMusic" src="assets/music.mp3" preload="auto" loop></audio>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
