@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f8f0e8">
+    <title>Wedding Congratulations Card</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="stage-wrap" aria-label="Interactive wedding congratulations card">
+      <section class="card" id="card" aria-live="polite">
+        <img class="scene scene-a is-active" id="sceneA" src="assets/scene-0-cover.png" alt="">
+        <img class="scene scene-b" id="sceneB" src="assets/scene-0-cover.png" alt="">
+
+        <div class="soft-glow" id="softGlow" aria-hidden="true"></div>
+        <div class="sparkle-layer" id="sparkleLayer" aria-hidden="true"></div>
+        <div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
+        <div class="celebration-overlay" id="celebrationOverlay" aria-hidden="true"></div>
+
+        <button class="music-toggle is-off" id="musicToggle" type="button" aria-label="Turn music on" aria-pressed="false">Music OFF</button>
+
+        <div class="cover-copy" id="coverCopy">
+          <h1>For the Newlyweds</h1>
+          <p>Tap to open</p>
+        </div>
+
+        <div class="final-message" id="finalMessage" aria-hidden="true">
+          <p class="final-kicker">With warmest wishes</p>
+          <h2 id="finalHeadline"></h2>
+          <p class="couple" id="finalCouple"></p>
+          <p class="message" id="finalText"></p>
+          <p class="sender">With love,<br><span id="finalSender"></span></p>
+        </div>
+
+        <div class="final-tap-hint" id="finalTapHint" aria-hidden="true">Tap to celebrate</div>
+        <button class="replay-button" id="replayButton" type="button" aria-label="Replay this card">Replay</button>
+
+        <audio id="cardMusic" src="assets/musicwd1.mp3" preload="auto" loop></audio>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
